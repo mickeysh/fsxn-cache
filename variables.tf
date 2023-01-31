@@ -24,25 +24,28 @@ variable "fsx_admin_password" {
 }
 
 variable "account_id" {
-  default = "account-46F1HgyQ"
   description = "aws account id"
+  sensitive = true
 }
 
 variable "workspace_id" {
-  default = "workspace-NdlFYtxK"
   description = "BlueXP workspace ID"
+  sensitive = true
 }
 
 variable "cloudmanager_refresh_token" {
   description = "Cloud manager refresh token"
+  sensitive = true
 }
 
 variable "cloudmanager_sa_client_id" {
   description = "Cloud Manager Service account Client ID"
+  sensitive = true
 }
 
 variable "cloudmanager_sa_secret_key" {
   description = "Cloud Manager Service account Secret key"
+  sensitive = true
 }
 
 variable "svm_password" {

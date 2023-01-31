@@ -9,7 +9,7 @@ resource "netapp-cloudmanager_connector_aws" "cl_occm_aws" {
   provider = netapp-cloudmanager
   name = "TF-ConnectorAWS"
   region = var.aws_region
-  key_name = "mshaul-oregon"
+  key_name = aws_key_pair.ssh_key.key_name
   company = "NetApp"
   instance_type = "t3.xlarge"
   subnet_id = aws_subnet.public2[0].id

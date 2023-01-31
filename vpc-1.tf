@@ -27,7 +27,7 @@ resource "aws_subnet" "public1" {
   availability_zone       = data.aws_availability_zones.available.names[count.index]
 
   tags = {
-    "Name" = "Public_subnet_${regex(".$", data.aws_availability_zones.available.names[count.index])}_${aws_vpc.vpc1.id}"
+    "Name" = "public_subnet_${regex(".$", data.aws_availability_zones.available.names[count.index])}_${aws_vpc.vpc1.id}"
   }
 }
 
@@ -36,7 +36,7 @@ resource "aws_internet_gateway" "igw1" {
   vpc_id = aws_vpc.vpc1.id
 
   tags = {
-    "Name" = "IGW_${aws_vpc.vpc1.id}"
+    "Name" = "igw_${aws_vpc.vpc1.id}"
   }
 }
 
@@ -45,7 +45,7 @@ resource "aws_route_table" "route_table1" {
   vpc_id = aws_vpc.vpc1.id
 
   tags = {
-    "Name" = "RTB_${aws_vpc.vpc1.id}"
+    "Name" = "rtb_${aws_vpc.vpc1.id}"
   }
 }
 
