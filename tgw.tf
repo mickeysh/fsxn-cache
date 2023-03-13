@@ -57,8 +57,20 @@ resource "aws_ec2_transit_gateway_route_table_propagation" "tf-tgw-rt-to-vpc-2" 
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.tf-tgw-rt.id
 }
 
-resource "aws_ec2_transit_gateway_route" "tf-tgw-route" {
+resource "aws_ec2_transit_gateway_route" "tf-tgw-route-1" {
   destination_cidr_block         = "${tostring(tolist(aws_fsx_ontap_file_system.fsxcache.endpoints[0].management[0].ip_addresses)[0])}/32"
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.tf-tgw-att-vpc1.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.tf-tgw-rt.id
+}
+
+resource "aws_ec2_transit_gateway_route" "tf-tgw-route-2" {
+  destination_cidr_block         = "${tostring(tolist(aws_fsx_ontap_file_system.fsxcache.endpoints[0].intercluster[0].ip_addresses)[0])}/32"
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.tf-tgw-att-vpc1.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.tf-tgw-rt.id
+}
+
+resource "aws_ec2_transit_gateway_route" "tf-tgw-route-3" {
+  destination_cidr_block         = "${tostring(tolist(aws_fsx_ontap_file_system.fsxcache.endpoints[0].intercluster[0].ip_addresses)[1])}/32"
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.tf-tgw-att-vpc1.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.tf-tgw-rt.id
 }

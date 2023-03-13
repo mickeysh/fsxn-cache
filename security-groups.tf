@@ -6,11 +6,11 @@ resource "aws_security_group" "sg_cloud_manager" {
 resource "aws_security_group_rule" "sg_cloud_manager_ingress" {
   description       = "allow inbound traffic to cloud manager"
   from_port         = 0
-  protocol          = "TCP"
+  protocol          = "-1"  
   to_port           = 65535
   security_group_id = aws_security_group.sg_cloud_manager.id
   type              = "ingress"
-  cidr_blocks       = [var.vpc_cidr_2]
+  cidr_blocks       = ["0.0.0.0/0"]
 }
 
 resource "aws_security_group_rule" "sg_cloud_manager_http_ingress" {
